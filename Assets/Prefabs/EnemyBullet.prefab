@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28952a968bbeefa46a4fe89309815a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  type: 0
+  bulletVelocity: {x: 0, y: -0.1, z: 0}
   bulletBounds:
     min: 5.5
     max: -5.5
-  direction: 2

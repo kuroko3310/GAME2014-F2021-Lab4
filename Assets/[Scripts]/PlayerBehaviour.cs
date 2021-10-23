@@ -10,6 +10,10 @@ public class PlayerBehaviour : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float decay;
     public Bounds bounds;
+
+    [Header("Player Attack")]
+    public Transform bulletSpawn;
+    public int frameDelay;
     
     private Rigidbody2D rigidbody;
 
@@ -24,6 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Move();
         CheckBounds();
+        CheckFire();
     }
 
     private void Move()
@@ -47,6 +52,14 @@ public class PlayerBehaviour : MonoBehaviour
         if (transform.position.x > bounds.max)
         {
             transform.position = new Vector2(bounds.max, transform.position.y);
+        }
+    }
+
+    private void CheckFire()
+    {
+        if((Time.frameCount % frameDelay == 0) && (Input.GetAxisRaw("Jump") > 0))
+        {
+            BulletManager.Instance().GetBullet(bulletSpawn.position, BulletType.PLAYER);
         }
     }
 }
