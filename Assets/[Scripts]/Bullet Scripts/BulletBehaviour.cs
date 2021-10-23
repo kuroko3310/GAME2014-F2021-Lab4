@@ -11,15 +11,6 @@ public class BulletBehaviour : MonoBehaviour
     public Vector3 bulletVelocity;
     public Bounds bulletBounds;
    
-
-   // private BulletManager bulletManager;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-       // bulletManager = GameObject.FindObjectOfType<BulletManager>();
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {

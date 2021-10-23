@@ -2,12 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Singleton
 [System.Serializable]
-public class BulletFactory : MonoBehaviour
+public class BulletFactory
 {
-    [Header("Bullet Types")]
+    // step 1. private static instance
+    private static BulletFactory instance = null;
+
+    // prefab references
     public GameObject enemyBullet;
     public GameObject playerBullet;
+
+    // game controller reference
+    private GameController gameController;
+
+    // step 2. make constructor private
+    private BulletFactory()
+    {
+        Initiliaze();
+    }
+
+    // step 3. make a public static creational method for class access
+    public static BulletFactory Instance()
+    {
+        if (instance == null)
+        {
+            instance = new BulletFactory();
+        }
+
+        return instance;
+    }
+
+    private void Initiliaze()
+    {
+        // step 4. Create a Resources folder
+        // step 5. Move our bullet prefabs into a new Resources/Prefabs folder
+
+        enemyBullet = Resources.Load("Prefabs/EnemyBullet") as GameObject;
+        playerBullet = Resources.Load("Prefabs/PlayerBullet") as GameObject;
+
+        gameController = GameObject.FindObjectOfType<GameController>();
+    }
 
     public GameObject createBullet(BulletType type = BulletType.ENEMY)
     {
@@ -15,14 +50,14 @@ public class BulletFactory : MonoBehaviour
         switch (type)
         {
             case BulletType.ENEMY:
-                temp_bullet = Instantiate(enemyBullet);
+                temp_bullet = MonoBehaviour.Instantiate(enemyBullet);
                 break;
             case BulletType.PLAYER:
-                temp_bullet = Instantiate(playerBullet);
+                temp_bullet = MonoBehaviour.Instantiate(playerBullet);
                 break;
         }
 
-        temp_bullet.transform.parent = transform;
+        temp_bullet.transform.parent = gameController.gameObject.transform;
         temp_bullet.SetActive(false);
 
         return temp_bullet;
