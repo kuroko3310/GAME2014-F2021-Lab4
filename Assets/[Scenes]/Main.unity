@@ -402,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5483275606954362864, guid: fd0c40e2984f341498fc140fe205d97b, type: 3}
       propertyPath: frameDelay
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5483275606954362867, guid: fd0c40e2984f341498fc140fe205d97b, type: 3}
       propertyPath: m_RootOrder
